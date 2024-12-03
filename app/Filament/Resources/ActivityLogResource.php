@@ -65,27 +65,8 @@ class ActivityLogResource extends Resource
                     ->getStateUsing(function ($record) {
                         return ucfirst($record->event);
                 }),
-                Tables\Columns\TextColumn::make('user_ip')
-                    ->label('User IP')
-                    ->getStateUsing(fn ($record) => json_decode($record->properties)->user_ip ?? 'N/A'),
-
-                Tables\Columns\TextColumn::make('user_agent')
-                ->label('User Agent')
-                ->getStateUsing(fn ($record) => json_decode($record->properties)->user_agent ?? 'N/A'),
-
-                Tables\Columns\TextColumn::make('old_record_title')
-                ->label('Old Record Title')
-                ->getStateUsing(fn ($record) => json_decode($record->properties)->old_record->title ?? 'N/A'),
-
-                Tables\Columns\TextColumn::make('old_record_content')
-                ->label('Old Record Content')
-                ->getStateUsing(fn ($record) => json_decode($record->properties)->old_record->content ?? 'N/A'),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
